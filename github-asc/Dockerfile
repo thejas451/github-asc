@@ -14,8 +14,8 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["github-asc/github-asc.csproj", "github-asc/"]
-RUN dotnet restore "./github-asc/github-asc.csproj"
+COPY ["github-asc.csproj", "."]
+RUN dotnet restore "/github-asc.csproj"
 COPY . .
 WORKDIR "/src/github-asc"
 RUN dotnet build "./github-asc.csproj" -c %BUILD_CONFIGURATION% -o /app/build
