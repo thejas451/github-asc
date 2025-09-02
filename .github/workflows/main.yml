@@ -1,0 +1,20 @@
+name: PipelineWorkflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  trigger-azure-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Azure DevOps Pipeline
+        uses: azure/pipelines@v1
+        with:
+          azure-devops-project-url: 'https://dev.azure.com/Thejasog3/ascendion-thejas1'
+          azure-pipeline-name: 'asc-thejas1'
+          azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
