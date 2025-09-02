@@ -20,7 +20,7 @@ COPY . .
 WORKDIR "/src/github-asc"
 RUN dotnet build "./github-asc.csproj" -c %BUILD_CONFIGURATION% -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
+# This stage is used to publish the service project to be copied to the final stages
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./github-asc.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
